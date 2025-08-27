@@ -41,15 +41,15 @@ jobs:
           SOURCE: "dist/airline-order-frontend/browser/"
           TARGET: "/home/ubuntu/frontend/"
           # 移除 -g 标志，防止 rsync 尝试修改组
-          ARGS: "-rltDvz --delete"
+          ARGS: "-rltDv --delete"
 
       # 步骤6: 修复文件权限
-      - name: Fix file permissions
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo chown -R www-data:www-data /home/ubuntu/frontend/
-            sudo systemctl restart nginx
+      # - name: Fix file permissions
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ${{ secrets.EC2_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       sudo chown -R www-data:www-data /home/ubuntu/frontend/
+      #       sudo systemctl restart nginx
