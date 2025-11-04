@@ -2,39 +2,47 @@
 
 .page-container {
   padding: 24px;
-  background-color: #e6f7ff; // 浅蓝色背景，与之前的#f0f8ff类似但更偏向蓝色
+  background-color: #e6f7ff; // 浅蓝色背景
   min-height: 100vh;
-  color: #003a8c; // 深蓝色字体，提供足够的对比度
+  color: #003a8c; // 深蓝色字体
 }
 
 nz-page-header {
-  background-color: #bae7ff; // 稍深的蓝色背景，用于头部
+  background-color: #1890ff; // 蓝色背景，用于头部，使用更鲜明的蓝色
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 24px;
-  color: #003a8c; // 头部字体颜色
+  padding: 16px; // 增加内边距以容纳标题和副标题
+  color: white; // 头部字体颜色为白色，以在蓝色背景上清晰显示
 
   a {
-    color: #0050b3; // 链接颜色，稍浅的蓝色
+    color: #e6f7ff; // 链接颜色为浅蓝色，与背景形成对比但不过于刺眼
+  }
+
+  .ant-page-header-heading-title {
+    color: white; // 确保标题颜色也是白色
+  }
+
+  .ant-page-header-sub-title {
+    color: #e6f7ff; // 副标题颜色为浅蓝色
   }
 }
 
-.actions {
-  margin-bottom: 24px;
-  display: flex;
-  gap: 12px;
-
-  button {
-    // 按钮样式可以根据需要调整，这里保持默认或根据设计系统调整
-    // 例如，可以设置按钮背景色和字体颜色与蓝色主题协调
-  }
-}
-
+// 如果nz-descriptions有标题，并且你想让它也遵循蓝色主题
 nz-descriptions {
-  background-color: #e6f7ff; // 与容器相同的浅蓝色背景
+  background-color: #e6f7ff; // 浅蓝色背景
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 24px;
+
+  // 描述列表标题样式（如果存在）
+  .ant-descriptions-header {
+    background-color: #1890ff; // 蓝色背景
+    color: white; // 白色字体
+    padding: 12px; // 内边距
+    border-radius: 4px; // 圆角
+    margin-bottom: 16px; // 与下方内容的间距
+  }
 
   nz-descriptions-item {
     margin-bottom: 16px;
@@ -44,6 +52,12 @@ nz-descriptions {
       margin-bottom: 0;
     }
   }
+}
+
+.actions {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
 }
 
 nz-spin {
