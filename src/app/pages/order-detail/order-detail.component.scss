@@ -2,47 +2,52 @@
 
 .page-container {
   padding: 24px;
-  background-color: #f0f8ff; // 与订单列表页面相同的背景色
-  min-height: 100vh; // 确保容器至少与视口一样高
+  background-color: #e6f7ff; // 浅蓝色背景，与之前的#f0f8ff类似但更偏向蓝色
+  min-height: 100vh;
+  color: #003a8c; // 深蓝色字体，提供足够的对比度
 }
 
-// 页面头部样式
 nz-page-header {
-  background-color: white; // 头部背景色
-  border-radius: 8px; // 圆角
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // 阴影效果
-  margin-bottom: 24px; // 与下方内容的间距
-}
+  background-color: #bae7ff; // 稍深的蓝色背景，用于头部
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 24px;
+  color: #003a8c; // 头部字体颜色
 
-// 操作区域样式
-.actions {
-  margin-bottom: 24px; // 与下方内容的间距
-  display: flex; // 使用flex布局
-  gap: 12px; // 按钮之间的间距
-
-  button {
-    // 可以根据需要调整按钮的样式
+  a {
+    color: #0050b3; // 链接颜色，稍浅的蓝色
   }
 }
 
-// 订单详情描述样式
+.actions {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+
+  button {
+    // 按钮样式可以根据需要调整，这里保持默认或根据设计系统调整
+    // 例如，可以设置按钮背景色和字体颜色与蓝色主题协调
+  }
+}
+
 nz-descriptions {
-  background-color: white; // 描述区域背景色
-  border-radius: 8px; // 圆角
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // 阴影效果
-  padding: 24px; // 内边距
+  background-color: #e6f7ff; // 与容器相同的浅蓝色背景
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 24px;
 
   nz-descriptions-item {
-    margin-bottom: 16px; // 描述项之间的间距
+    margin-bottom: 16px;
+    color: #003a8c; // 描述项字体颜色
 
     &:last-child {
-      margin-bottom: 0; // 最后一个描述项无间距
+      margin-bottom: 0;
     }
   }
 }
 
-// 加载指示器样式（如果需要）
 nz-spin {
-  display: block; // 使加载指示器独占一行
-  margin-top: 24px; // 与上方内容的间距
+  display: block;
+  margin-top: 24px;
+  color: #003a8c; // 加载指示器字体颜色（如果适用）
 }
