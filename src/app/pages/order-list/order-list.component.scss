@@ -1,7 +1,8 @@
 /* 定义变量 */
 $primary-color: #1890ff;
 $light-primary-color: #e6f7ff; // 浅蓝色，用于背景等
-$medium-primary-color: #91d5ff; // 中等蓝色，用于表头等
+$medium-primary-color: #91d5ff; // 中等蓝色，原用于表头等，现调整用途
+$deep-blue: #0050b3; // 新增深蓝色，用于表头标题背景
 $dark-primary-color: #096dd9; // 深蓝色，用于加深效果等
 $secondary-color: #fa8c16;
 $success-color: #52c41a;
@@ -43,7 +44,7 @@ $border-radius: 8px;
   }
 
   button {
-    padding: 10px 20px; // 适当减小按钮内边距
+    padding: 10px 20px;
     background-color: $dark-primary-color;
     color: white;
     border: none;
@@ -51,7 +52,7 @@ $border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
     font-weight: bold;
-    font-size: 14px; // 调整按钮字体大小
+    font-size: 14px;
 
     &:hover {
       background-color: darken($dark-primary-color, 10%);
@@ -66,16 +67,29 @@ nz-table {
   box-shadow: 0 2px 8px $shadow-color;
 
   thead {
-    th {
-      padding: $padding-md + 6px;
-      background-color: $medium-primary-color; // 表头使用中等蓝色
-      color: white;
-      font-weight: bold;
-      text-align: left;
-      font-size: 17px;
-      letter-spacing: 1.5px;
-      border-top-left-radius: $border-radius / 2;
-      border-top-right-radius: $border-radius / 2;
+    tr:first-child { // 选中表头第一行
+      th {
+        padding: $padding-md + 8px; // 适当增加内边距
+        background-color: $deep-blue; // 设置背景颜色为深蓝色
+        color: white;
+        font-weight: bold;
+        text-align: left;
+        font-size: 20px; // 增大字体
+        letter-spacing: 1.5px;
+        border-top-left-radius: $border-radius / 2;
+        border-top-right-radius: $border-radius / 2;
+      }
+    }
+    tr:not(:first-child) { // 选中表头除第一行外的其他行
+      th {
+        padding: $padding-md + 6px;
+        background-color: $medium-primary-color;
+        color: white;
+        font-weight: bold;
+        text-align: left;
+        font-size: 17px;
+        letter-spacing: 1.5px;
+      }
     }
   }
 
