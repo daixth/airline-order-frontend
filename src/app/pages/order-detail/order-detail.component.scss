@@ -1,67 +1,115 @@
-// order-detail.component.scss
+// airline-order-frontend/src/app/pages/order-detail/order-detail.component.scss
 
+// 页面容器样式
 .page-container {
   padding: 24px;
-  background-color: #e6f7ff; // 浅蓝色背景
-  min-height: 100vh;
-  color: #003a8c; // 深蓝色字体
+  background-color: #f0f8ff; // 浅蓝色背景
 }
 
+// 表头样式
 nz-page-header {
-  background-color: #1890ff; // 蓝色背景，用于头部，使用更鲜明的蓝色
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(to right, #e6f7ff, #bae7ff); // 渐变蓝色背景
+  padding: 20px;
+  border-radius: 6px;
   margin-bottom: 24px;
-  padding: 16px; // 增加内边距以容纳标题和副标题
-  color: white; // 头部字体颜色为白色，以在蓝色背景上清晰显示
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 轻微阴影增加立体感
 
-  a {
-    color: #e6f7ff; // 链接颜色为浅蓝色，与背景形成对比但不过于刺眼
+  nz-page-header-title {
+    font-size: 22px;
+    color: #0050b3; // 深蓝色标题
+    font-weight: 600;
   }
 
-  .ant-page-header-heading-title {
-    color: white; // 确保标题颜色也是白色
-  }
-
-  .ant-page-header-sub-title {
-    color: #e6f7ff; // 副标题颜色为浅蓝色
+  nz-page-header-subtitle {
+    font-size: 16px;
+    color: #003a8c; // 稍浅的蓝色副标题
   }
 }
 
-// 如果nz-descriptions有标题，并且你想让它也遵循蓝色主题
-nz-descriptions {
+// 操作区域样式
+.actions {
+  margin-bottom: 24px;
+  padding: 16px;
   background-color: #e6f7ff; // 浅蓝色背景
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 24px;
+  border-radius: 6px;
 
-  // 描述列表标题样式（如果存在）
-  .ant-descriptions-header {
-    background-color: #1890ff; // 蓝色背景
-    color: white; // 白色字体
-    padding: 12px; // 内边距
-    border-radius: 4px; // 圆角
-    margin-bottom: 16px; // 与下方内容的间距
-  }
+  button {
+    margin-right: 12px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
 
-  nz-descriptions-item {
-    margin-bottom: 16px;
-    color: #003a8c; // 描述项字体颜色
+    &:nth-child(1) { // 立即支付按钮
+      background-color: #1890ff;
+      border: 1px solid #1890ff;
+      color: white;
 
-    &:last-child {
-      margin-bottom: 0;
+      &:hover {
+        background-color: #40a9ff;
+        border-color: #40a9ff;
+      }
+    }
+
+    &:nth-child(2) { // 重试出票按钮
+      background-color: #69c0ff;
+      border: 1px solid #69c0ff;
+      color: white;
+
+      &:hover {
+        background-color: #91d5ff;
+        border-color: #91d5ff;
+      }
+    }
+
+    &:nth-child(3) { // 取消订单按钮
+      background-color: #f5f5f5;
+      border: 1px solid #d9d9d9;
+      color: rgba(0, 0, 0, 0.65);
+
+      &:hover {
+        color: #1890ff;
+        border-color: #1890ff;
+      }
     }
   }
 }
 
-.actions {
-  margin-bottom: 24px;
-  display: flex;
-  gap: 12px;
+// 描述列表样式
+nz-descriptions {
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  nz-descriptions-title {
+    font-size: 18px;
+    color: #0050b3;
+    padding: 16px;
+    background-color: #f5f5f5; // 标题栏背景色
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  nz-descriptions-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e8e8e8;
+
+    nz-descriptions-item-title {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 500;
+    }
+
+    nz-descriptions-item-content {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+  }
 }
 
+// 加载指示器样式
 nz-spin {
-  display: block;
-  margin-top: 24px;
-  color: #003a8c; // 加载指示器字体颜色（如果适用）
+  color: #1890ff;
+  font-size: 16px;
 }
