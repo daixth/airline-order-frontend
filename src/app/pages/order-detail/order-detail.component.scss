@@ -1,3 +1,48 @@
+// order-detail.component.scss
+
 .page-container {
   padding: 24px;
+  background-color: #f0f8ff; // 与订单列表页面相同的背景色
+  min-height: 100vh; // 确保容器至少与视口一样高
+}
+
+// 页面头部样式
+nz-page-header {
+  background-color: white; // 头部背景色
+  border-radius: 8px; // 圆角
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // 阴影效果
+  margin-bottom: 24px; // 与下方内容的间距
+}
+
+// 操作区域样式
+.actions {
+  margin-bottom: 24px; // 与下方内容的间距
+  display: flex; // 使用flex布局
+  gap: 12px; // 按钮之间的间距
+
+  button {
+    // 可以根据需要调整按钮的样式
+  }
+}
+
+// 订单详情描述样式
+nz-descriptions {
+  background-color: white; // 描述区域背景色
+  border-radius: 8px; // 圆角
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // 阴影效果
+  padding: 24px; // 内边距
+
+  nz-descriptions-item {
+    margin-bottom: 16px; // 描述项之间的间距
+
+    &:last-child {
+      margin-bottom: 0; // 最后一个描述项无间距
+    }
+  }
+}
+
+// 加载指示器样式（如果需要）
+nz-spin {
+  display: block; // 使加载指示器独占一行
+  margin-top: 24px; // 与上方内容的间距
 }
