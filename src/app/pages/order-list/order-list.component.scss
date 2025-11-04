@@ -1,6 +1,6 @@
 .page-container {
   padding: 24px;
-  background-color: #f0f8ff; // 浅蓝色背景
+  background-color: #f0f8ff; // 浅蓝色背景，提升整体清新感
 }
 
 .page-header {
@@ -10,71 +10,51 @@
   margin-bottom: 24px;
 
   h1 {
-    color: #0066cc; // 深蓝色标题
+    color: #007bff; // 标题使用更鲜艳的蓝色
     font-size: 24px; // 增大标题字体
+    font-weight: bold;
   }
 
   button {
-    background-color: #007bff; // 蓝色按钮背景
-    color: white;
+    background-color: #007bff; // 按钮背景色
+    color: white; // 按钮文字颜色
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px; // 增大按钮字体
+    transition: background-color 0.3s;
 
     &:hover {
-      background-color: #0056b3; // 按钮悬停颜色
+      background-color: #0056b3; // 按钮悬停效果
     }
   }
 }
 
 nz-table {
   width: 100%;
-  background-color: white;
-  border-radius: 8px;
+  background-color: white; // 表格背景色为白色，与浅蓝色背景形成对比
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 添加阴影效果，提升高级感
+  border-radius: 4px; // 圆角边框
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  thead {
-    background-color: #007bff; // 表头背景色
-    color: white;
-
-    th {
-      padding: 12px 16px;
-      font-size: 16px; // 增大表头字体
-      text-align: left;
-    }
+  th {
+    background-color: #e6f7ff; // 表头背景色
+    color: #007bff; // 表头文字颜色
+    font-size: 16px; // 增大表头字体
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
   }
 
-  tbody {
-    tr {
-      &:nth-child(odd) {
-        background-color: #f0f8ff; // 浅蓝色背景行
-      }
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #e8e8e8; // 单元格底部边框
+    color: #333; // 单元格文字颜色
+    font-size: 14px; // 单元格字体大小
+  }
 
-      &:nth-child(even) {
-        background-color: #e6f7ff; // 更浅的蓝色背景行
-      }
-
-      &:hover {
-        background-color: #b3d9ff; // 悬停时的背景色
-      }
-
-      td {
-        padding: 12px 16px;
-        font-size: 14px; // 调整表格内容字体大小
-        color: #333;
-
-        a {
-          color: #007bff; // 链接颜色
-          text-decoration: none;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
+  tr:hover {
+    background-color: #f5f5f5; // 鼠标悬停行背景色
   }
 }
