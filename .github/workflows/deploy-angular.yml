@@ -1,33 +1,55 @@
-server {
-    # 监听 80 端口，这是标准的 HTTP 访问端口
-    listen 80 default_server;
+# 工作流名称
+name: Java CI/CD with Docker
 
-    # 监听的服务器 IP 地址或域名
-    server_name 13.60.21.225; 
-    # !!! 请务必替换成你自己的 EC2 公网 IP !!!
+# 触发条件：当代码被推送到main分支时触发
+on:
+  push:
+    branches: [ "rae-cicd" ]
 
-    # --- 规则 1: 处理前端静态文件 ---
-    # 匹配所有不以 /api/ 开头的请求
-    location / {
-        # 指定存放前端文件的根目录
-        root /home/ubuntu/frontend;
-        
-        # 关键配置，用于支持 Angular 的路由
-        # 当用户直接访问或刷新 /dashboard 这样的路径时，Nginx 最终会返回 index.html
-        # 剩下的路由工作就交给了浏览器里的 Angular Router
-        try_files $uri $uri/ /index.html;
-    }
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
 
-    # --- 规则 2: 处理后端 API 请求 ---
-    # 匹配所有以 /api/ 开头的请求
-    location /api/ {
-        # 将这些请求“反向代理”给我们内部运行的 Spring Boot 服务
-        proxy_pass http://127.0.0.1:8080;
-        
-        # 标准的代理配置头
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
+    steps:
+      # 步骤1: 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 步骤2: 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22' # 或者你需要的更高版本
+          cache: 'npm'
+
+      # 步骤3: 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 步骤4: 构建 Angular 项目
+      - name: Build project for production
+        run: npm run build
+
+      # 步骤5: 上传到 EC2 服务器
+      - name: Deploy to EC2 via rsync
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.EC2_HOST }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          SOURCE: "dist/airline-order-frontend/browser/"
+          TARGET: "/home/ubuntu/frontend/"
+          # 移除 -g 标志，防止 rsync 尝试修改组
+          ARGS: "-rltDv --delete"
+
+      # 步骤6: 修复文件权限
+      # - name: Fix file permissions
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ${{ secrets.EC2_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       sudo chown -R www-data:www-data /home/ubuntu/frontend/
+      #       sudo systemctl restart nginx
