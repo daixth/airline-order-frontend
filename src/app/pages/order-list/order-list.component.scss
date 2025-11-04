@@ -1,61 +1,30 @@
-/* 定义变量 */
-$primary-color: #1890ff;
-$light-primary-color: #e6f7ff; // 浅蓝色，用于背景等
-$medium-primary-color: #91d5ff; // 中等蓝色，原用于表头等，现调整用途
-$deep-blue: #0050b3; // 新增深蓝色，用于表头标题背景
-$dark-primary-color: #096dd9; // 深蓝色，用于加深效果等
-$secondary-color: #fa8c16;
-$success-color: #52c41a;
-$warning-color: #faad14;
-$danger-color: #f5222d;
-$info-color: #2f54eb;
-$hover-color: #40a9ff;
-$text-color: #333;
-$light-text-color: #666;
-$dark-text-color: #000;
-$border-color: #f0f0f0;
-$shadow-color: rgba(0, 0, 0, 0.1);
-$padding-lg: 32px;
-$padding-md: 16px;
-$border-radius: 8px;
-
 .page-container {
-  padding: $padding-lg;
-  background-color: #fff;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 12px $shadow-color;
-  margin: 20px;
-  border: 1px solid $border-color;
+  padding: 24px;
+  background-color: #f0f8ff; // 浅蓝色背景
 }
 
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: $padding-lg;
-  padding-bottom: $padding-md;
-  border-bottom: 1px solid $border-color;
+  margin-bottom: 24px;
 
   h1 {
-    font-size: 28px;
-    font-weight: bold;
-    color: $dark-text-color;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    color: #0066cc; // 深蓝色标题
+    font-size: 24px; // 增大标题字体
   }
 
   button {
-    padding: 10px 20px;
-    background-color: $dark-primary-color;
+    background-color: #007bff; // 蓝色按钮背景
     color: white;
     border: none;
-    border-radius: 6px;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
-    font-size: 14px;
+    font-size: 16px; // 增大按钮字体
 
     &:hover {
-      background-color: darken($dark-primary-color, 10%);
+      background-color: #0056b3; // 按钮悬停颜色
     }
   }
 }
@@ -63,136 +32,41 @@ $border-radius: 8px;
 nz-table {
   width: 100%;
   background-color: white;
-  border-radius: $border-radius / 2;
-  box-shadow: 0 2px 8px $shadow-color;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   thead {
-    tr:first-child { // 选中表头第一行
-      th {
-        padding: $padding-md + 8px; // 适当增加内边距
-        background-color: $deep-blue; // 设置背景颜色为深蓝色
-        color: white;
-        font-weight: bold;
-        text-align: left;
-        font-size: 20px; // 增大字体
-        letter-spacing: 1.5px;
-        border-top-left-radius: $border-radius / 2;
-        border-top-right-radius: $border-radius / 2;
-      }
-    }
-    tr:not(:first-child) { // 选中表头除第一行外的其他行
-      th {
-        padding: $padding-md + 6px;
-        background-color: $medium-primary-color;
-        color: white;
-        font-weight: bold;
-        text-align: left;
-        font-size: 17px;
-        letter-spacing: 1.5px;
-      }
+    background-color: #007bff; // 表头背景色
+    color: white;
+
+    th {
+      padding: 12px 16px;
+      font-size: 16px; // 增大表头字体
+      text-align: left;
     }
   }
 
   tbody {
     tr {
-      transition: background-color 0.3s;
+      border-bottom: 1px solid #e0e0e0;
 
-      &:nth-child(odd) {
-        background-color: $light-primary-color;
-      }
-
-      &:hover {
-        background-color: lighten($primary-color, 35%);
+      &:last-child {
+        border-bottom: none;
       }
 
       td {
-        padding: $padding-md + 4px;
-        border-bottom: 1px solid $border-color;
-        font-size: 16px;
+        padding: 12px 16px;
+        font-size: 14px; // 调整表格内容字体大小
+        color: #333;
 
         a {
-          color: $primary-color;
+          color: #007bff; // 链接颜色
           text-decoration: none;
-          transition: color 0.3s;
-          font-weight: 500;
-          font-size: 16px;
 
           &:hover {
-            color: darken($primary-color, 10%);
-          }
-        }
-
-        // 不同状态订单的字体颜色和背景颜色调整
-        nz-tag {
-          &.success {
-            background-color: lighten($success-color, 42%);
-            color: darken($success-color, 10%);
-            font-weight: bold;
-            font-size: 15px;
-          }
-
-          &.warning {
-            background-color: lighten($warning-color, 37%);
-            color: darken($warning-color, 10%);
-            font-style: italic;
-            font-size: 15px;
-          }
-
-          &.danger {
-            background-color: lighten($danger-color, 37%);
-            color: darken($danger-color, 10%);
             text-decoration: underline;
-            font-size: 15px;
           }
-
-          &.info {
-            background-color: lighten($info-color, 47%);
-            color: darken($info-color, 10%);
-            font-size: 15px;
-          }
-        }
-      }
-    }
-  }
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .page-container {
-    padding: $padding-md;
-    margin: 10px;
-  }
-
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-
-    h1 {
-      margin-bottom: $padding-md;
-      font-size: 24px;
-    }
-  }
-
-  nz-table {
-    thead {
-      display: none;
-    }
-
-    tbody {
-      tr {
-        display: block;
-        margin-bottom: $padding-md;
-      }
-
-      td {
-        display: block;
-        text-align: right;
-
-        &::before {
-          content: attr(data-label);
-          float: left;
-          font-weight: bold;
-          color: $text-color;
         }
       }
     }
