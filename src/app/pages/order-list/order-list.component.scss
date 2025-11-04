@@ -32,60 +32,112 @@
 }
 
 nz-table {
-  // ... 其他样式保持不变
-  margin-bottom: 32px; // 增加表格与分页之间的距离
-  // ... 其他样式保持不变
+  // 表格样式保持不变
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 40px; // 增加表格底部的外边距，以加大与分页部件的距离
+
+  th {
+    background-color: #e6f7ff;
+    color: #007bff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 16px;
+    text-align: left;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  td {
+    padding: 16px;
+    border-bottom: 1px solid #e8e8e8;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  tr {
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &:not(:last-child) td {
+      border-bottom: 1px solid #e8e8e8;
+    }
+  }
 }
 
-// 分页部件样式调整
+// 新增分页部件容器样式
 .pagination-container {
   display: flex;
   justify-content: center;
-  margin-top: 32px; // 进一步增加分页部件与表格之间的距离
+  margin-top: 20px; // 可以根据需要调整这个值，进一步加大距离
 }
 
+// 分页部件样式
 nz-pagination {
-  ::ng-deep .nz-pagination {
-    display: inline-flex;
-    align-items: center;
+  ::ng-deep {
+    .nz-pagination {
+      display: flex;
+      align-items: center;
 
-    .nz-pagination-item,
-    .nz-pagination-prev,
-    .nz-pagination-next {
-      min-width: 36px; // 进一步增加分页项的最小宽度
-      height: 36px; // 进一步增加分页项的高度
-      line-height: 36px;
-      margin: 0 6px; // 增加分页项之间的间距
-      border-radius: 6px; // 增大圆角
-      transition: all 0.3s ease; // 优化过渡效果
+      .nz-pagination-item,
+      .nz-pagination-prev,
+      .nz-pagination-next {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        margin: 0 5px;
+        border-radius: 6px;
+        background-color: #f5f5f5;
+        transition: background-color 0.3s, transform 0.2s;
 
-      a {
-        color: #007bff;
-        font-size: 14px;
-        font-weight: 500; // 增加字体权重
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: #007bff;
+          text-align: center;
+          font-size: 14px;
+        }
+
+        &:hover {
+          background-color: #e6f7ff;
+          transform: scale(1.05);
+        }
       }
 
-      &:hover {
-        background-color: #e6f7ff;
-        transform: translateY(-2px); // 添加轻微的上浮效果
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 添加阴影效果
+      .nz-pagination-item-active {
+        background-color: #007bff;
+
+        a {
+          color: white;
+          font-weight: bold;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
-    }
 
-    .nz-pagination-item-active {
-      background-color: #007bff;
-      transform: translateY(-2px); // 激活状态也上浮
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 激活状态添加阴影
+      .nz-pagination-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
 
-      a {
-        color: white;
-        font-weight: bold; // 激活状态字体加粗
+        &:hover {
+          transform: none;
+        }
       }
-    }
-
-    .nz-pagination-disabled {
-      opacity: 0.6; // 禁用状态透明度降低
-      cursor: not-allowed; // 禁用状态光标样式
     }
   }
 }
