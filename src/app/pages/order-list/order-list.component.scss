@@ -49,10 +49,16 @@ nz-table {
 
   tbody {
     tr {
-      border-bottom: 1px solid #e0e0e0;
+      &:nth-child(odd) {
+        background-color: #f0f8ff; // 浅蓝色背景行
+      }
 
-      &:last-child {
-        border-bottom: none;
+      &:nth-child(even) {
+        background-color: #e6f7ff; // 更浅的蓝色背景行
+      }
+
+      &:hover {
+        background-color: #b3d9ff; // 悬停时的背景色
       }
 
       td {
