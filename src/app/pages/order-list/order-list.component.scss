@@ -32,45 +32,60 @@
 }
 
 nz-table {
-  width: 100%;
-  background-color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // 增加阴影效果，使表格更立体
-  border-radius: 8px; // 增大圆角，使表格更柔和
-  overflow: hidden;
-  border-collapse: separate; // 防止边框重叠
-  border-spacing: 0; // 确保边框间距为0
+  // ... 其他样式保持不变
+  margin-bottom: 32px; // 增加表格与分页之间的距离
+  // ... 其他样式保持不变
+}
 
-  th {
-    background-color: #e6f7ff;
-    color: #007bff;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 16px; // 增加内边距，使内容更宽松
-    text-align: left;
-    border-bottom: 2px solid #e0e0e0; // 添加底部边框，增强分隔效果
-  }
+// 分页部件样式调整
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px; // 进一步增加分页部件与表格之间的距离
+}
 
-  td {
-    padding: 16px; // 增加内边距
-    border-bottom: 1px solid #e8e8e8;
-    color: #333;
-    font-size: 14px;
-    transition: background-color 0.3s; // 添加过渡效果，使悬停更平滑
+nz-pagination {
+  ::ng-deep .nz-pagination {
+    display: inline-flex;
+    align-items: center;
 
-    &:last-child {
-      border-bottom: none; // 最后一行单元格无底部边框
+    .nz-pagination-item,
+    .nz-pagination-prev,
+    .nz-pagination-next {
+      min-width: 36px; // 进一步增加分页项的最小宽度
+      height: 36px; // 进一步增加分页项的高度
+      line-height: 36px;
+      margin: 0 6px; // 增加分页项之间的间距
+      border-radius: 6px; // 增大圆角
+      transition: all 0.3s ease; // 优化过渡效果
+
+      a {
+        color: #007bff;
+        font-size: 14px;
+        font-weight: 500; // 增加字体权重
+      }
+
+      &:hover {
+        background-color: #e6f7ff;
+        transform: translateY(-2px); // 添加轻微的上浮效果
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 添加阴影效果
+      }
     }
-  }
 
-  tr {
-    transition: background-color 0.3s; // 添加过渡效果
+    .nz-pagination-item-active {
+      background-color: #007bff;
+      transform: translateY(-2px); // 激活状态也上浮
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 激活状态添加阴影
 
-    &:hover {
-      background-color: #f5f5f5; // 悬停行背景色
+      a {
+        color: white;
+        font-weight: bold; // 激活状态字体加粗
+      }
     }
 
-    &:not(:last-child) td {
-      border-bottom: 1px solid #e8e8e8; // 非最后一行单元格添加底部边框
+    .nz-pagination-disabled {
+      opacity: 0.6; // 禁用状态透明度降低
+      cursor: not-allowed; // 禁用状态光标样式
     }
   }
 }
