@@ -1,0 +1,55 @@
+# 工作流名称
+name: Java CI/CD with Docker
+
+# 触发条件：当代码被推送到main分支时触发
+on:
+  push:
+    branches: [ "rae-cicd" ]
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # 步骤1: 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 步骤2: 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22' # 或者你需要的更高版本
+          cache: 'npm'
+
+      # 步骤3: 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 步骤4: 构建 Angular 项目
+      - name: Build project for production
+        run: npm run build
+
+      # 步骤5: 上传到 EC2 服务器
+      - name: Deploy to EC2 via rsync
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.EC2_HOST }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          SOURCE: "dist/airline-order-frontend/browser/"
+          TARGET: "/home/ubuntu/frontend/"
+          # 移除 -g 标志，防止 rsync 尝试修改组
+          ARGS: "-rltDv --delete"
+
+      # 步骤6: 修复文件权限
+      # - name: Fix file permissions
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ${{ secrets.EC2_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       sudo chown -R www-data:www-data /home/ubuntu/frontend/
+      #       sudo systemctl restart nginx
