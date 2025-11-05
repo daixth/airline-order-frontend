@@ -1,54 +1,159 @@
-<div class="page-container" *ngIf="order$ | async as order; else loading">
-  <nz-page-header nzBackIcon [nzGhost]="false" nzTitle="订单详情" [nzSubtitle]="order.orderNumber">
-    <nz-page-header-extra>
-      <a routerLink="/orders">返回列表</a>
-    </nz-page-header-extra>
-  </nz-page-header>
 
-  <ng-container *ngIf="order$ | async as order; else loading">
+.page-container {
+  padding: 24px;
+  background: #f5f7fa;
+}
 
-  <!-- 添加一个操作区域 -->
-  <div class="actions" style="margin-bottom: 16px;">
-    <!-- 支付按钮 -->
-    <button *ngIf="order.status === 'PENDING_PAYMENT'" nz-button nzType="primary" (click)="onPay(order.id)" [nzLoading]="isLoading">
-      <span nz-icon nzType="dollar"></span>
-      立即支付
-    </button>
+/* 标题样式 - 蓝色系 */
+nz-page-header {
+  .ant-page-header-heading-title {
+    color: #1890ff;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .ant-page-header-heading-sub-title {
+    color: #69c0ff;
+    font-size: 14px;
+  }
+}
 
-    <!-- 重试出票按钮 -->
-    <button *ngIf="order.status === 'TICKETING_FAILED'" nz-button nzType="default" (click)="onRetry(order.id)" [nzLoading]="isLoading">
-      <span nz-icon nzType="redo"></span>
-      重试出票
-    </button>
+/* 操作按钮区域 */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  
+  button {
+    border-radius: 6px;
+    font-weight: 500;
+    
+    &:hover {
+      transform: translateY(-1px);
+      transition: all 0.3s ease;
+    }
+  }
+}
 
-    <!-- 取消按钮 (多种状态下可取消) -->
-    <button *ngIf="order.status === 'PENDING_PAYMENT' || order.status === 'PAID' || order.status === 'TICKETING_FAILED'"
-            nz-button nzType="dashed" nzDanger (click)="onCancel(order.id)" [nzLoading]="isLoading">
-      <span nz-icon nzType="close-circle"></span>
-      取消订单
-    </button>
-  </div>
+/* 订单详情描述列表 */
+nz-descriptions {
+  .ant-descriptions-title {
+    color: #1890ff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  
+  .ant-descriptions-item-label {
+    color: #096dd9;
+    font-weight: 500;
+    background-color: #f0f8ff;
+    padding: 8px 16px;
+    
+    &::after {
+      background-color: #1890ff;
+    }
+  }
+  
+  .ant-descriptions-item-content {
+    color: #262626;
+    padding: 8px 16px;
+    background-color: #fff;
+  }
+  
+  .ant-descriptions-row {
+    border-bottom: 1px solid #e8f4ff;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
 
+/* 状态标签样式 */
+nz-tag {
+  border-radius: 4px;
+  font-weight: 500;
+  
+  &.ant-tag-blue {
+    background: #e6f7ff;
+    border-color: #91d5ff;
+    color: #096dd9;
+  }
+  
+  &.ant-tag-green {
+    background: #f6ffed;
+    border-color: #b7eb8f;
+    color: #389e0d;
+  }
+  
+  &.ant-tag-red {
+    background: #fff2f0;
+    border-color: #ffccc7;
+    color: #d4380d;
+  }
+  
+  &.ant-tag-orange {
+    background: #fff7e6;
+    border-color: #ffd591;
+    color: #d46b08;
+  }
+}
 
-  <nz-descriptions nzTitle="订单详情" nzBordered>
-    <nz-descriptions-item nzTitle="Status">
-      <nz-tag [nzColor]="getStatusColor(order.status)">{{ order.status | titlecase }}</nz-tag>
-         <nz-descriptions-item nzTitle="订单ID">{{ order.id }}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="订单号">{{ order.orderNumber }}</nz-descriptions-item>
-      <!-- 为异步状态添加一个加载指示器 -->
-      <nz-spin *ngIf="order.status === 'TICKETING_IN_PROGRESS'" nzSimple [nzSize]="'small'"></nz-spin>
-    </nz-descriptions-item>
-      <nz-descriptions-item nzTitle="订单金额">{{ order.amount | currency:'CNY' }}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="创建时间">{{ order.creationDate | date:'full' }}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="下单用户">{{ order.user.username }} (ID: {{ order.user.id }})</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="模拟航班信息" nzSpan="2" *ngIf="order.flightInfo">
-      <pre>{{ order.flightInfo | json }}</pre>
-    </nz-descriptions-item>
-  </nz-descriptions>
-</ng-container>
+/* 加载状态 */
+nz-spin {
+  .ant-spin-dot-item {
+    background-color: #1890ff;
+  }
+}
 
-</div>
+/* 返回链接样式 */
+nz-page-header-extra {
+  a {
+    color: #1890ff;
+    text-decoration: none;
+    
+    &:hover {
+      color: #40a9ff;
+      text-decoration: underline;
+    }
+  }
+}
 
-<ng-template #loading>
-  <div class="page-container">加载中...</div>
-</ng-template>
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+  
+  nz-descriptions {
+    .ant-descriptions-item-label,
+    .ant-descriptions-item-content {
+      padding: 6px 12px;
+    }
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
