@@ -30,65 +30,69 @@ nz-page-header {
   border: 1px solid rgba(24, 144, 255, 0.1);
   position: relative;
   overflow: hidden;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, $primary-blue, $primary-dark-blue);
-  }
+nz-page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, $primary-blue, $primary-dark-blue);
+}
 
-  nz-page-header-title {
-    font-size: 24px;
-    color: $primary-dark-blue;
-    font-weight: 700;
-    margin-bottom: 4px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  }
+nz-page-header-title {
+  font-size: 24px;
+  color: $primary-dark-blue;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
 
-  nz-page-header-subtitle {
-    font-size: 16px;
-    color: $text-blue;
-    font-weight: 500;
-    opacity: 0.9;
-  }
+nz-page-header-subtitle {
+  font-size: 16px;
+  color: $text-blue;
+  font-weight: 500;
 }
 
 // 操作区域样式美化
 .actions {
   margin-bottom: 20px;
   padding: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(230, 247, 255, 0.7) 100%);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 2px 12px rgba(24, 144, 255, 0.1);
-  
-  button {
-    margin-right: 12px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: none;
-    cursor: pointer;
-    
-    // 主要按钮样式
-    &.primary {
-      background: linear-gradient(135deg, $primary-blue 0%, $primary-dark-blue 100%);
-      color: white;
-      box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
-      
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(24, 144, 255, 0.4);
-      }
-    }
-    
-    // 次要按钮样式
-    &.secondary {
-      background: rgba(255, 255, 255,
+}
+
+.actions button {
+  margin-right: 12px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.actions button.primary {
+  background: linear-gradient(135deg, $primary-blue 0%, $primary-dark-blue 100%);
+  color: white;
+}
+
+.actions button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(24, 144, 255, 0.4);
+}
+
+.actions button.secondary {
+  background: rgba(255, 255, 255, 0.8);
+  color: $primary-blue;
+  border: 1px solid $primary-blue;
+}
+
+.actions button.secondary:hover {
+  background: $primary-blue;
+  color: white;
+}
