@@ -1,18 +1,22 @@
 
 .page-container {
   padding: 24px;
-  background: #f5f7fa;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 标题样式 - 蓝色系 */
+/* 页面头部样式 - 蓝色系 */
 nz-page-header {
-  .ant-page-header-heading-title {
+  margin-bottom: 24px;
+
+  ::ng-deep .ant-page-header-heading-title {
     color: #1890ff;
-    font-weight: 600;
     font-size: 20px;
+    font-weight: 600;
   }
-  
-  .ant-page-header-heading-sub-title {
+
+  ::ng-deep .ant-page-header-heading-sub-title {
     color: #69c0ff;
     font-size: 14px;
   }
@@ -23,50 +27,42 @@ nz-page-header {
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
-  
+
   button {
     border-radius: 6px;
-    font-weight: 500;
-    
+    transition: all 0.3s ease;
+
     &:hover {
       transform: translateY(-1px);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
     }
   }
 }
 
-/* 订单详情描述列表 */
+/* 描述列表样式 - 蓝色系 */
 nz-descriptions {
-  .ant-descriptions-title {
+  ::ng-deep .ant-descriptions-title {
     color: #1890ff;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 16px;
   }
-  
-  .ant-descriptions-item-label {
+
+  ::ng-deep .ant-descriptions-item-label {
     color: #096dd9;
     font-weight: 500;
     background-color: #f0f8ff;
-    padding: 8px 16px;
-    
-    &::after {
-      background-color: #1890ff;
-    }
+    border-right: 2px solid #e6f7ff;
   }
-  
-  .ant-descriptions-item-content {
+
+  ::ng-deep .ant-descriptions-item-content {
     color: #262626;
-    padding: 8px 16px;
-    background-color: #fff;
+    font-weight: 400;
   }
-  
-  .ant-descriptions-row {
-    border-bottom: 1px solid #e8f4ff;
-    
-    &:last-child {
-      border-bottom: none;
-    }
+
+  ::ng-deep .ant-descriptions-row > td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #f0f0f0;
   }
 }
 
@@ -74,86 +70,20 @@ nz-descriptions {
 nz-tag {
   border-radius: 4px;
   font-weight: 500;
-  
-  &.ant-tag-blue {
-    background: #e6f7ff;
-    border-color: #91d5ff;
-    color: #096dd9;
-  }
-  
-  &.ant-tag-green {
-    background: #f6ffed;
-    border-color: #b7eb8f;
-    color: #389e0d;
-  }
-  
-  &.ant-tag-red {
-    background: #fff2f0;
-    border-color: #ffccc7;
-    color: #d4380d;
-  }
-  
-  &.ant-tag-orange {
-    background: #fff7e6;
-    border-color: #ffd591;
-    color: #d46b08;
-  }
 }
 
-/* 加载状态 */
+/* 加载状态样式 */
 nz-spin {
-  .ant-spin-dot-item {
-    background-color: #1890ff;
-  }
+  display: inline-block;
+  margin-left: 8px;
 }
 
-/* 返回链接样式 */
-nz-page-header-extra {
-  a {
-    color: #1890ff;
-    text-decoration: none;
-    
-    &:hover {
-      color: #40a9ff;
-      text-decoration: underline;
-    }
-  }
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .page-container {
-    padding: 16px;
-  }
-  
-  .actions {
-    flex-direction: column;
-    
-    button {
-      width: 100%;
-    }
-  }
-  
-  nz-descriptions {
-    .ant-descriptions-item-label,
-    .ant-descriptions-item-content {
-      padding: 6px 12px;
-    }
-  }
-}
-
-/* 动画效果 */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page-container {
-  animation: fadeIn 0.5s ease-in-out;
-}
+/* 返回链接样式 - 蓝色系 */
+a[routerLink="/orders"] {
+  color: #1890ff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #1890ff;
+  border-radius: 6px;
+  transition: all 0.3s ease;
