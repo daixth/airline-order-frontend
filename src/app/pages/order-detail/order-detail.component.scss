@@ -1,87 +1,290 @@
-// airline-order-frontend/src/app/pages/order-detail/order-detail.component.scss
 
-// 页面容器样式
+/* 订单详情页面样式 - 蓝色系主题 */
 .page-container {
-  padding: 32px; // 增加内边距，使蓝色底更大
-  background-color: #f0f8ff; // 浅蓝色背景
-  min-height: 100vh; // 确保页面容器至少占据整个视口高度
-  box-sizing: border-box; // 确保内边距和边框包含在元素的总高度和宽度内
+  background: linear-gradient(135deg, #f8fbff 0%, #e6f2ff 100%);
+  min-height: 100vh;
+  padding: 24px;
 }
 
-// 表头样式
+/* 页面头部样式优化 */
 nz-page-header {
-  background: linear-gradient(to right, #e6f7ff, #bae7ff); // 渐变蓝色背景
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 12px; // 减少与下方内容的距离
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 轻微阴影增加立体感
-
-  nz-page-header-title {
-    font-size: 22px;
-    color: #0050b3; // 深蓝色标题
-    font-weight: 600;
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 32px rgba(24, 144, 255, 0.15);
+  
+  ::ng-deep .ant-page-header-heading {
+    .ant-page-header-heading-title {
+      color: white;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .ant-page-header-heading-sub-title {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 16px;
+    }
   }
-
-  nz-page-header-subtitle {
-    font-size: 16px;
-    color: #003a8c; // 稍浅的蓝色副标题
+  
+  ::ng-deep .ant-page-header-extra {
+    a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+    }
   }
 }
 
-// 操作区域样式
+/* 操作按钮区域优化 */
 .actions {
-  margin-bottom: 16px; // 适当调整操作区域与下方内容的距离
-  padding: 16px;
-  background-color: #e6f7ff; // 浅蓝色背景
-  border-radius: 6px;
-
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  
   button {
-    margin-right: 12px;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 8px;
     font-weight: 500;
-    transition: all 0.3s;
-
-    // 按钮悬停和默认样式保持不变...
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.2);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(24, 144, 255, 0.3);
+    }
+    
+    /* 主要按钮 - 支付按钮 */
+    &[nztype="primary"] {
+      background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+      border: none;
+      
+      &:hover {
+        background: linear-gradient(135deg, #40a9ff 0%, #1890ff 100%);
+      }
+    }
+    
+    /* 默认按钮 - 重试按钮 */
+    &[nztype="default"] {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+      border: 1px solid #1890ff;
+      color: #1890ff;
+      
+      &:hover {
+        background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+        color: white;
+      }
+    }
+    
+    /* 危险按钮 - 取消按钮 */
+    &[nz-button][nztype="dashed"] {
+      background: linear-gradient(135deg, #fff2f0 0%, #fff0f6 100%);
+      border: 1px solid #ff4d4f;
+      color: #ff4d4f;
+      
+      &:hover {
+        background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+        color: white;
+      }
+    }
   }
 }
 
-// 描述列表样式
+/* 描述列表优化 - 表格样式改进 */
 nz-descriptions {
-  background-color: white;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 8px; // 显著减少与上方内容（如表头或操作区域）的距离
-
-  nz-descriptions-title {
-    font-size: 18px;
-    color: #0050b3;
-    padding: 16px;
-    background-color: #f5f5f5; // 标题栏背景色
-    border-bottom: 1px solid #e8e8e8;
-  }
-
-  nz-descriptions-item {
-    padding: 12px 16px;
-    border-bottom: 1px solid #e8e8e8;
-
-    nz-descriptions-item-title {
-      font-size: 14px;
-      color: #1890ff; // 固定项目使用蓝色字体
-      font-weight: 500;
+  ::ng-deep .ant-descriptions {
+    &-header {
+      margin-bottom: 20px;
+      
+      .ant-descriptions-title {
+        color: #1890ff;
+        font-size: 20px;
+        font-weight: 600;
+      }
     }
-
-    nz-descriptions-item-content {
-      font-size: 14px;
-      color: rgba(0, 0, 0, 0.65);
+    
+    &-view {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(24, 144, 255, 0.1);
+    }
+    
+    &-row {
+      &:nth-child(even) {
+        background: #f8fbff;
+      }
+      
+      &:hover {
+        background: #e6f7ff;
+        transition: background 0.3s ease;
+      }
+    }
+    
+    &-item {
+      padding: 16px 24px;
+      border-bottom: 1px solid #e8f4ff;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &-label {
+        color: #597ef7;
+        font-weight: 600;
+        font-size: 14px;
+        
+        &::after {
+          background: #e8f4ff;
+        }
+      }
+      
+      &-content {
+        color: #1f2d3d;
+        font-size: 14px;
+        font-weight: 500;
+      }
     }
   }
 }
 
-// 加载指示器样式
+/* 标签状态样式优化 */
+nz-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: none;
+  
+  /* 不同状态的标签颜色 */
+  &[nzcolor="blue"] {
+    background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+    color: white;
+  }
+  
+  &[nzcolor="green"] {
+    background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+    color: white;
+  }
+  
+  &[nzcolor="orange"] {
+    background: linear-gradient(135deg, #fa8c16 0%, #d46b08 100%);
+    color: white;
+  }
+  
+  &[nzcolor="red"] {
+    background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+    color: white;
+  }
+  
+  &[nzcolor="purple"] {
+    background: linear-gradient(135deg, #722ed1 0%, #391085 100%);
+    color: white;
+  }
+}
+
+/* 加载指示器样式 */
 nz-spin {
+  ::ng-deep .ant-spin {
+    &-dot {
+      color: #1890ff;
+    }
+  }
+}
+
+/* 航班信息卡片样式 */
+.flight-info {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: 0 4px 16px rgba(24, 144, 255, 0.1);
+  border: 1px solid #e8f4ff;
+  
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8f4ff;
+    
+    h3 {
+      color: #1890ff;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+  
+  &-content {
+    pre {
+      background: #f8fbff;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #e8f4ff;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #1f2d3d;
+      margin: 0;
+      overflow-x: auto;
+    }
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+  
+  nz-descriptions {
+    ::ng-deep .ant-descriptions {
+      &-item {
+        padding: 12px 16px;
+      }
+    }
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 货币格式样式增强 */
+.currency-amount {
   color: #1890ff;
+  font-weight: 600;
   font-size: 16px;
+}
+
+/* 日期格式样式增强 */
+.date-time {
+  color: #597ef7;
+  font-weight: 500;
 }
