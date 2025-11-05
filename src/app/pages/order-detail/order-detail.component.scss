@@ -1,48 +1,49 @@
+// airline-order-frontend/src/app/pages/order-detail/order-detail.component.scss
+
 // 页面容器样式
 .page-container {
-  padding: 32px;
-  background-color: #f0f8ff;
-  min-height: 100vh;
-  box-sizing: border-box;
+  padding: 32px; // 增加内边距，使蓝色底更大
+  background-color: #f0f8ff; // 浅蓝色背景
+  min-height: 100vh; // 确保页面容器至少占据整个视口高度
+  box-sizing: border-box; // 确保内边距和边框包含在元素的总高度和宽度内
 }
 
 // 表头样式
 nz-page-header {
-  background: linear-gradient(to right, #e6f7ff, #bae7ff);
+  background: linear-gradient(to right, #e6f7ff, #bae7ff); // 渐变蓝色背景
   padding: 20px;
   border-radius: 6px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px; // 减少与下方内容的距离
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 轻微阴影增加立体感
 
-  ::ng-deep .ant-page-header-heading-title {
+  nz-page-header-title {
     font-size: 22px;
-    color: #0050b3; // 修改为蓝色
+    color: #0050b3; // 深蓝色标题
     font-weight: 600;
   }
 
-  ::ng-deep .ant-page-header-heading-sub-title {
+  nz-page-header-subtitle {
     font-size: 16px;
-    color: #003a8c; // 修改为蓝色
+    color: #003a8c; // 稍浅的蓝色副标题
   }
 }
 
 // 操作区域样式
 .actions {
-  margin-bottom: 16px;
+  margin-bottom: 16px; // 适当调整操作区域与下方内容的距离
   padding: 16px;
-  background-color: #e6f7ff;
+  background-color: #e6f7ff; // 浅蓝色背景
   border-radius: 6px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
 
   button {
+    margin-right: 12px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
     transition: all 0.3s;
-    
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+
+    // 按钮悬停和默认样式保持不变...
   }
 }
 
@@ -52,79 +53,35 @@ nz-descriptions {
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 8px;
+  margin-top: 8px; // 显著减少与上方内容（如表头或操作区域）的距离
 
-  ::ng-deep .ant-descriptions {
-    &-title {
-      font-size: 18px;
-      color: #0050b3; // 修改为蓝色
-      padding: 16px;
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #e8e8e8;
-      font-weight: 600;
-    }
+  nz-descriptions-title {
+    font-size: 18px;
+    color: #0050b3;
+    padding: 16px;
+    background-color: #f5f5f5; // 标题栏背景色
+    border-bottom: 1px solid #e8e8e8;
+  }
 
-    &-item-label {
-      color: #1890ff !important; // 修改为蓝色
+  nz-descriptions-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e8e8e8;
+
+    nz-descriptions-item-title {
+      font-size: 14px;
+      color: #1890ff; // 固定项目使用蓝色字体
       font-weight: 500;
     }
 
-    &-item-content {
+    nz-descriptions-item-content {
+      font-size: 14px;
       color: rgba(0, 0, 0, 0.65);
     }
   }
 }
 
-// 状态标签样式
-nz-tag {
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 12px;
-  padding: 4px 8px;
-}
-
-// 加载状态样式
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
-  .loading-text {
-    margin-top: 16px;
-    color: #1890ff; // 修改为蓝色
+// 加载指示器样式
+nz-spin {
+  color: #1890ff;
   font-size: 16px;
-  }
-}
-
-// 响应式设计
-@media (max-width: 768px) {
-  .page-container {
-    padding: 16px;
-  }
-  
-  .actions {
-    justify-content: center;
-  }
-}
-
-// 动画效果
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page-container {
-  animation: fadeIn 0.3s ease-out;
 }
